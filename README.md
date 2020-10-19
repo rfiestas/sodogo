@@ -1,8 +1,8 @@
 # Sodogo
 
-A Sudoku solver written in [Go][go].
+A Sudoku solver written in [Go](https://golang.org/).
 
-From [Wikipedia][sudoku-wiki]:
+From [Wikipedia](https://en.wikipedia.org/wiki/Sudoku):
 > Sudoku (数独 sūdoku, digit-single) (/suːˈdoʊkuː/, /-ˈdɒk-/, /sə-/, originally
 > called Number Place) is a logic-based, combinatorial number-placement puzzle.
 > The objective is to fill a 9×9 grid with digits so that each column, each row,
@@ -24,7 +24,7 @@ import (
 )
 
 func main() {
-	helper := sodogo.NewHelperBoard(3) // Creates a 3x3 board helpers
+    helper := sodogo.NewHelperBoard(3) // Creates a 3x3 board helpers
     board := sodogo.NewBoard(helper)   // Creates an empty 3x3 board
     
     // Load sodoku from string
