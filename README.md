@@ -18,9 +18,9 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Sudoku):
 package main
 
 import (
-	"fmt"
-	"os"
-	"github.com/rfiestas/sodogo"
+    "fmt"
+    "os"
+    "github.com/rfiestas/sodogo"
 )
 
 func main() {
@@ -28,22 +28,22 @@ func main() {
     board := sodogo.NewBoard(helper)   // Creates an empty 3x3 board
     
     // Load sodoku from string
-	err := board.LoadFromString("004300209005009001070060043006002087190007400050083000600000105003508690042910300")
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(2)
+    err := board.LoadFromString("004300209005009001070060043006002087190007400050083000600000105003508690042910300")
+    if err != nil {
+        fmt.Println(err)
+        os.Exit(2)
     }
     
     fmt.Println("Sodoku to solve:")
-	fmt.Println(board.NicePrint())
+    fmt.Println(board.NicePrint())
     
     fmt.Println("Go,...")
-	if board.Solve() {
-		fmt.Printf("Solved in %d steps, elapsed time: %s\n", board.Steps, board.Elapsed)
-		fmt.Println(board.NicePrint())
-	} else {
-		fmt.Println("Impossible to solve :(")
-	}
+    if board.Solve() {
+        fmt.Printf("Solved in %d steps, elapsed time: %s\n", board.Steps, board.Elapsed)
+        fmt.Println(board.NicePrint())
+    } else {
+        fmt.Println("Impossible to solve :(")
+    }
 }
 ```
 
