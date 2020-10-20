@@ -24,7 +24,7 @@ import (
 
 */
 
-//Board sodoku board data
+//Board sudoku board data
 type Board struct {
 	data    []cell        // cell value and potential values
 	helpers HelperBoard   // helpers to calculate neighbors
@@ -61,11 +61,11 @@ func (p flatNeighborsPotential) getNeighborsPotentialValues(h HelperBoard) (int,
 }
 
 func (p streetYNeighborsPotential) getNeighborsPotentialValues(h HelperBoard) (int, []int) {
-	return (p.value / h.maxValue) * h.maxValue, h.streetYNeighbors
+	return p.value - p.value%h.maxValue, h.streetYNeighbors
 }
 
 func (p streetXNeighborsPotential) getNeighborsPotentialValues(h HelperBoard) (int, []int) {
-	return p.value - ((p.value / h.maxValue) * h.maxValue), h.streetXNeighbors
+	return p.value % h.maxValue, h.streetXNeighbors
 }
 
 // NewBoard create a new board
@@ -99,7 +99,7 @@ func (b Board) LoadFromString(board string) error {
 	return nil
 }
 
-// Solve the Sodoku
+// Solve the Sudoku
 func (b *Board) Solve() bool {
 	start := time.Now()
 	var np []neighborsPotential
@@ -158,7 +158,7 @@ func (b *Board) String() (res string) {
 	return buffer.String()
 }
 
-// NicePrint print the sodoku human representation
+// NicePrint print the sudoku human representation
 func (b *Board) NicePrint() string {
 	output := []interface{}{}
 	for pos := 0; pos < b.helpers.boardSize; pos++ {
@@ -188,12 +188,12 @@ func (b *Board) isValid() (solved bool) {
 		if !r {
 			return false
 		}
-		inc := (pos / b.helpers.maxValue) * b.helpers.maxValue
+		inc := pos - (pos % b.helpers.maxValue)
 		r = unique(b.getNeighborsValues(pos, b.helpers.streetYNeighbors, inc, false))
 		if !r {
 			return false
 		}
-		inc = pos - ((pos / b.helpers.maxValue) * b.helpers.maxValue)
+		inc = pos % b.helpers.maxValue
 		r = unique(b.getNeighborsValues(pos, b.helpers.streetXNeighbors, inc, false))
 		if !r {
 			return false
@@ -255,13 +255,13 @@ func (b *Board) getFlatNeighborsValues(p int) (n neighbors) {
 
 // getStreetYNeighborsValues returns the street Y neighbors values
 func (b *Board) getStreetYNeighborsValues(p int) (n neighbors) {
-	inc := (p / b.helpers.maxValue) * b.helpers.maxValue
+	inc := p - p%b.helpers.maxValue
 	return b.getNeighborsValues(p, b.helpers.streetYNeighbors, inc, true)
 }
 
 // getStreetXNeighborsValues returns the street X neighbors values
 func (b *Board) getStreetXNeighborsValues(p int) (n neighbors) {
-	inc := p - ((p / b.helpers.maxValue) * b.helpers.maxValue)
+	inc := p % b.helpers.maxValue
 	return b.getNeighborsValues(p, b.helpers.streetXNeighbors, inc, true)
 }
 

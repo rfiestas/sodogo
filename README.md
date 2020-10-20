@@ -1,5 +1,7 @@
 # Sodogo
 
+**SO**<sup>lving</sup><br><sup>su</sup>**DO**<sup>kus</sup><br><sup>in</sup> **GO**
+
 A Sudoku solver written in [Go](https://golang.org/).
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Sudoku):
@@ -27,14 +29,14 @@ func main() {
     helper := sodogo.NewHelperBoard(3) // Creates a 3x3 board helpers
     board := sodogo.NewBoard(helper)   // Creates an empty 3x3 board
     
-    // Load sodoku from string
+    // Load sudoku from string
     err := board.LoadFromString("004300209005009001070060043006002087190007400050083000600000105003508690042910300")
     if err != nil {
         fmt.Println(err)
         os.Exit(2)
     }
     
-    fmt.Println("Sodoku to solve:")
+    fmt.Println("Sudoku to solve:")
     fmt.Println(board.NicePrint())
     
     fmt.Println("Go,...")
@@ -50,7 +52,7 @@ func main() {
 ```bash
 $ go run .
 
-Sodoku to solve:
+Sudoku to solve:
 ╔═══╤═══╤═══╦═══╤═══╤═══╦═══╤═══╤═══╗
 ║   │   │ 4 ║ 3 │   │   ║ 2 │   │ 9 ║
 ╟───┼───┼───╫───┼───┼───╫───┼───┼───╢
