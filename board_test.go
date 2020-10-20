@@ -366,8 +366,8 @@ func TestBoard_isValid(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if res := tt.b.isValid(); res != tt.wantValid {
-				t.Errorf("Board.isSolved() res = %v, wantRes %v", res, tt.wantValid)
+			if res := tt.b.IsValid(); res != tt.wantValid {
+				t.Errorf("Board.IsValid() res = %v, wantRes %v", res, tt.wantValid)
 			}
 		})
 	}

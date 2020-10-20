@@ -182,7 +182,9 @@ func (b *Board) isSolved() (solved bool) {
 
 	return true
 }
-func (b *Board) isValid() (solved bool) {
+
+// IsValid returns if the board is valid
+func (b *Board) IsValid() (solved bool) {
 	for pos := 0; pos < b.helpers.boardSize; pos++ {
 		r := unique(b.getFlatNeighborsValues(pos))
 		if !r {
@@ -202,6 +204,7 @@ func (b *Board) isValid() (solved bool) {
 	return true
 }
 
+// unique check duplicated numbers on a list
 func unique(intSlice []int) bool {
 	keys := make(map[int]bool)
 	for _, entry := range intSlice {
